@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MPAndroidChart-Realm.iml" filepath="$PROJECT_DIR$/MPAndroidChart-Realm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartExample-Realm/MPChartExample-Realm.iml" filepath="$PROJECT_DIR$/MPChartExample-Realm/MPChartExample-Realm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartLib-Realm/MPChartLib-Realm.iml" filepath="$PROJECT_DIR$/MPChartLib-Realm/MPChartLib-Realm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartExample-Realm/app.iml" filepath="$PROJECT_DIR$/MPChartExample-Realm/app.iml" />
+    </modules>
+  </component>
+</project>
