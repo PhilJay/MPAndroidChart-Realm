@@ -6,6 +6,6 @@ package com.github.mikephil.charting.data.realm;
 public class RealmUtil {
 
     public static void test() {
-        
+
     }
 }
