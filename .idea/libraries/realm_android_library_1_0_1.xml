@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="realm-android-library-1.0.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../MPAndroidChart/MPChartLib/build/intermediates/exploded-aar/io.realm/realm-android-library/1.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../MPAndroidChart/MPChartLib/build/intermediates/exploded-aar/io.realm/realm-android-library/1.0.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm/realm-android-library/1.0.1/5eac8938d5d64b70ba9069c000d69ce96a6e7819/realm-android-library-1.0.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm/realm-android-library/1.0.1/5eac8938d5d64b70ba9069c000d69ce96a6e7819/realm-android-library-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

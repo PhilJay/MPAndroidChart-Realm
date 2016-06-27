@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MPChartExample-Realm" />
             <option value="$PROJECT_DIR$/MPChartLib-Realm" />
+            <option value="$PROJECT_DIR$/../MPAndroidChart/MPChartLib" />
           </set>
         </option>
         <option name="myModules">
@@ -17,6 +18,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MPChartExample-Realm" />
             <option value="$PROJECT_DIR$/MPChartLib-Realm" />
+            <option value="$PROJECT_DIR$/../MPAndroidChart/MPChartLib" />
           </set>
         </option>
       </GradleProjectSettings>

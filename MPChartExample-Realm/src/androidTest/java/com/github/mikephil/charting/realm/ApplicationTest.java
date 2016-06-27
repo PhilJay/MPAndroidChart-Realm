@@ -1,4 +1,4 @@
-package com.github.mikephil.charting;
+package com.github.mikephil.charting.realm;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
