@@ -252,6 +252,11 @@ public class RealmLineDataSet<T extends RealmObject> extends RealmLineRadarDataS
         return mCircleColors;
     }
 
+
+    public int getCircleColorCount(){
+        return mCircleColors.size();
+    }
+
     @Override
     public int getCircleColor(int index) {
         return mCircleColors.get(index % mCircleColors.size());
