@@ -1,2 +1,2 @@
 include ':MPChartExample-Realm', ':MPChartLib-Realm', ':MPChartLib'
-project(':MPChartLib').projectDir = new File('../MPAndroidChart/MPChartLib')
+//project(':MPChartLib').projectDir = new File('../MPAndroidChart/MPChartLib')

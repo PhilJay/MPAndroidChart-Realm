@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../MPAndroidChart.iml" filepath="$PROJECT_DIR$/../MPAndroidChart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../MPChartExample/MPChartExample.iml" filepath="$PROJECT_DIR$/../MPChartExample/MPChartExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib.iml" />
+    </modules>
+  </component>
+</project>
