@@ -14,6 +14,8 @@ dependencies {
 }
 ```
 
+The MPAndroidChart-Realm dependency also includes the latest MPAndroidChart release.
+
 # Tutorial
 
 [Here](https://github.com/PhilJay/MPAndroidChart-Realm/wiki/Realm.io-database-integration), you can find a tutorial on how to plot Realm database data with MPAndroidChart.
