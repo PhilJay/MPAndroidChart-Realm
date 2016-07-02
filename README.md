@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-	    compile 'com.github.PhilJay:MPAndroidChart:v1.0.2@aar'
+	    compile 'com.github.PhilJay:MPAndroidChart-Realm:v1.0.2@aar'
 }
 ```
 
