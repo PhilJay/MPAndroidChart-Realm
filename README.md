@@ -1,4 +1,6 @@
-# MPAndroidChart-Realm
+
+![alt tag](https://raw.github.com/PhilJay/MPAndroidChart-Realm/master/design/feature_graphic.png)
+
 This repository contains all [Realm.io](http://realm.io) related features of the [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library.
 
 # Getting Started
