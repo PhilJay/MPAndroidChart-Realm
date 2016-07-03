@@ -4,7 +4,7 @@
 
 ![alt tag](https://raw.github.com/PhilJay/MPAndroidChart-Realm/master/design/feature_graphic.png)
 
-This repository contains all [Realm.io](http://realm.io) related features of the [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library based on **Realm v1.0.1** release.
+This repository contains all [Realm.io](http://realm.io) related features of the [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library based on **Realm v1.1.0** release.
 
 # Getting Started
 
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-	    compile 'com.github.PhilJay:MPAndroidChart-Realm:v1.0.2@aar'
+	    compile 'com.github.PhilJay:MPAndroidChart-Realm:v1.1.0@aar'
 }
 ```
 
