@@ -19,7 +19,7 @@ dependencies {
 }
 ```
 
-The MPAndroidChart-Realm dependency also includes the latest MPAndroidChart release.
+The MPAndroidChart-Realm dependency **does not include** the latest MPAndroidChart release, so you have to add the dependency to [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart#usage) as well.
 
 # Tutorial
 
