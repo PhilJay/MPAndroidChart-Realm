@@ -8,14 +8,18 @@ This repository contains all [Realm.io](http://realm.io) related features of the
 
 # Getting Started
 
-To use MPAndroidChart-Realm, add the following to your `build.gradle`:
- ```gradle
-repositories {
-	    maven { url "https://jitpack.io" }
+ - To use this library, add the following to your project level `build.gradle`:
+```gradle
+allprojects {
+	repositories {
+		maven { url "https://jitpack.io" }
+	}
 }
-
+```
+ - Add this to your app `build.gradle`:
+```gradle
 dependencies {
-	    compile 'com.github.PhilJay:MPAndroidChart-Realm:v1.1.0@aar'
+	compile 'com.github.PhilJay:MPAndroidChart-Realm:v1.1.0@aar'
 }
 ```
 
