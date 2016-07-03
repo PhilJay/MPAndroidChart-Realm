@@ -4,7 +4,7 @@
 
 ![alt tag](https://raw.github.com/PhilJay/MPAndroidChart-Realm/master/design/feature_graphic.png)
 
-This repository contains all [Realm.io](http://realm.io) related features of the [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library.
+This repository contains all [Realm.io](http://realm.io) related features of the [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library based on **Realm v1.0.1** release.
 
 # Getting Started
 
@@ -23,4 +23,4 @@ The MPAndroidChart-Realm dependency also includes the latest MPAndroidChart rele
 
 # Tutorial
 
-[Here](https://github.com/PhilJay/MPAndroidChart-Realm/wiki/Realm.io-database-integration), you can find a tutorial on how to plot Realm database data with MPAndroidChart.
+[Here](https://github.com/PhilJay/MPAndroidChart-Realm/wiki/Realm.io-database-integration), you can find a full guide on how to plot data from Realm.io database with MPAndroidChart from scratch.
