@@ -1,5 +1,6 @@
 [![Twitter](https://img.shields.io/badge/Twitter-@PhilippJahoda-blue.svg?style=flat)](http://twitter.com/philippjahoda)
 [![Twitter](https://img.shields.io/badge/Twitter-@mpandroidchart-blue.svg?style=flat)](http://twitter.com/mpandroidchart)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MPAndroidChart--Realm-green.svg?style=true)](https://android-arsenal.com/details/1/3838)
 [![Release](https://img.shields.io/github/release/PhilJay/MPAndroidChart-Realm.svg?label=maven central)](https://jitpack.io/#PhilJay/MPAndroidChart-Realm)      [![API](https://img.shields.io/badge/API-16%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
 ![alt tag](https://raw.github.com/PhilJay/MPAndroidChart-Realm/master/design/feature_graphic.png)
