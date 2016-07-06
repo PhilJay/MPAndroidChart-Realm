@@ -26,6 +26,26 @@ dependencies {
 
 The MPAndroidChart-Realm dependency **does not include** the latest MPAndroidChart release, so you have to add the dependency to [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart#usage) as well.
 
+# Sample
+
+Using [MPAndroidChart]() with [Realm.io]() is easier than you think.
+
+```java
+// get realm instance
+Realm realm = Realm.getDefaultInstance();
+
+// load your data from Realm.io database
+RealmResults<Score> results = realm.where(Score.class).findAll();
+
+// create a DataSet and specify fields
+RealmBarDataSet<Score> dataSet = new RealmBarDataSet<Score>(results, "xValue", "yValue");
+
+// create a data object with the dataset 
+BarData data = new BarData(dataSet);
+chart.setData(data);
+chart.invalidate(); // refresh
+```
+
 # Tutorial
 
 [Here](https://github.com/PhilJay/MPAndroidChart-Realm/wiki/Realm.io-database-integration), you can find a full guide on how to plot data from Realm.io database with MPAndroidChart from scratch.
