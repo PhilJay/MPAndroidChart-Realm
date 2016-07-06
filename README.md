@@ -28,7 +28,7 @@ The MPAndroidChart-Realm dependency **does not include** the latest MPAndroidCha
 
 # Sample
 
-Using [MPAndroidChart]() with [Realm.io]() is easier than you think.
+Using [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) with [Realm.io](https://realm.io) is easier than you think.
 
 ```java
 // get realm instance
