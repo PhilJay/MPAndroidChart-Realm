@@ -35,7 +35,7 @@ Using [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) with [Realm.io
 Realm realm = Realm.getDefaultInstance();
 
 // load your data from Realm.io database
-RealmResults<Score> results = realm.where(Score.class).findAll();
+RealmResults<Score> results = realm.where(YourData.class).findAll();
 
 // create a DataSet and specify fields, MPAndroidChart-Realm does the rest
 RealmBarDataSet<Score> dataSet = new RealmBarDataSet<Score>(results, "xValue", "yValue");
