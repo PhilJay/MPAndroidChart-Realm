@@ -3,6 +3,7 @@ package com.github.mikephil.charting.data.realm.implementation;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.util.Log;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -143,13 +144,18 @@ public class RealmLineDataSet<T extends RealmObject> extends RealmLineRadarDataS
     }
 
     /**
-     * sets the size (radius) of the circle shpaed value indicators, default
-     * size = 4f
+     * Sets the radius of the drawn circles.
+     * Default radius = 4f, Min = 1f
      *
-     * @param size
+     * @param radius
      */
-    public void setCircleSize(float size) {
-        mCircleRadius = Utils.convertDpToPixel(size);
+    public void setCircleRadius(float radius) {
+
+        if (radius >= 1f) {
+            mCircleRadius = Utils.convertDpToPixel(radius);
+        } else {
+            Log.e("LineDataSet", "Circle radius cannot be < 1");
+        }
     }
 
     @Override
@@ -158,13 +164,18 @@ public class RealmLineDataSet<T extends RealmObject> extends RealmLineRadarDataS
     }
 
     /**
-     * sets the hole radius of the drawn circles.
-     * Default radius = 2f
+     * Sets the hole radius of the drawn circles.
+     * Default radius = 2f, Min = 0.5f
      *
      * @param holeRadius
      */
     public void setCircleHoleRadius(float holeRadius) {
-        mCircleHoleRadius = Utils.convertDpToPixel(holeRadius);
+
+        if (holeRadius >= 0.5f) {
+            mCircleHoleRadius = Utils.convertDpToPixel(holeRadius);
+        } else {
+            Log.e("LineDataSet", "Circle radius cannot be < 0.5");
+        }
     }
 
     @Override
