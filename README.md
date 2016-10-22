@@ -25,7 +25,7 @@ dependencies {
 }
 ```
 
-The MPAndroidChart-Realm dependency **does not include** the latest MPAndroidChart release, so you have to add the dependency to [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart#usage) as well.
+The MPAndroidChart-Realm dependency **does not include** the latest MPAndroidChart release, so you have to add the dependency to [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart#usage) as well (as shown above). You also have to add the [Realm.io dependency](https://realm.io/docs/java/latest/#getting-started).
 
 # Sample
 
