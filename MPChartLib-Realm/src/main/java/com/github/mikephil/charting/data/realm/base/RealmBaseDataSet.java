@@ -143,6 +143,25 @@ public abstract class RealmBaseDataSet<T extends RealmObject, S extends Entry> e
         }
     }
 
+    @Override
+    public void calcMinMaxY(float fromX, float toX) {
+
+        if (mValues == null || mValues.isEmpty())
+            return;
+
+        mYMax = -Float.MAX_VALUE;
+        mYMin = Float.MAX_VALUE;
+
+        int indexFrom = getEntryIndex(fromX, Float.NaN, DataSet.Rounding.DOWN);
+        int indexTo = getEntryIndex(toX, Float.NaN, DataSet.Rounding.UP);
+
+        for (int i = indexFrom; i <= indexTo; i++) {
+
+            // only recalculate y
+            calcMinMaxY(mValues.get(i));
+        }
+    }
+
     /**
      * Updates the min and max x and y value of this DataSet based on the given Entry.
      *
@@ -150,11 +169,15 @@ public abstract class RealmBaseDataSet<T extends RealmObject, S extends Entry> e
      */
     protected void calcMinMax(S e) {
 
-        if (e.getY() < mYMin)
-            mYMin = e.getY();
+        if (e == null)
+            return;
 
-        if (e.getY() > mYMax)
-            mYMax = e.getY();
+        calcMinMaxX(e);
+
+        calcMinMaxY(e);
+    }
+
+    protected void calcMinMaxX(S e) {
 
         if (e.getX() < mXMin)
             mXMin = e.getX();
@@ -163,31 +186,33 @@ public abstract class RealmBaseDataSet<T extends RealmObject, S extends Entry> e
             mXMax = e.getX();
     }
 
-    @Override
-    public S getEntryForXPos(float xPos) {
-        //DynamicRealmObject o = new DynamicRealmObject(results.where().equalTo(mXValuesField, xIndex).findFirst());
-        //return new Entry(o.getFloat(mYValuesField), o.getInt(mXValuesField));
-        return getEntryForXPos(xPos, DataSet.Rounding.CLOSEST);
+    protected void calcMinMaxY(S e) {
+
+        if (e.getY() < mYMin)
+            mYMin = e.getY();
+
+        if (e.getY() > mYMax)
+            mYMax = e.getY();
     }
 
     @Override
-    public S getEntryForXPos(float xPos, DataSet.Rounding rounding) {
-        int index = getEntryIndex(xPos, rounding);
+    public S getEntryForXValue(float xValue, float closestToY, DataSet.Rounding rounding) {
+
+        int index = getEntryIndex(xValue, closestToY, rounding);
         if (index > -1)
             return mValues.get(index);
         return null;
     }
 
     @Override
-    public List<S> getEntriesForXPos(float xVal) {
+    public S getEntryForXValue(float xValue, float closestToY) {
+        return getEntryForXValue(xValue, closestToY, DataSet.Rounding.CLOSEST);
+    }
+
+    @Override
+    public List<S> getEntriesForXValue(float xVal) {
 
         List<S> entries = new ArrayList<>();
-
-//        {
-//            T object = results.get(xVal);
-//            if (object != null)
-//                entries.add(buildEntryFromResultObject(object, xVal));
-//        } else
 
         if (mXValuesField != null) {
             RealmResults<T> foundObjects = results.where().equalTo(mXValuesField, xVal).findAll();
@@ -207,40 +232,84 @@ public abstract class RealmBaseDataSet<T extends RealmObject, S extends Entry> e
     }
 
     @Override
-    public int getEntryIndex(float xPos, DataSet.Rounding rounding) {
+    public int getEntryIndex(float xValue, float closestToY, DataSet.Rounding rounding) {
+
+        if (mValues == null || mValues.isEmpty())
+            return -1;
 
         int low = 0;
         int high = mValues.size() - 1;
-        int closest = -1;
+        int closest = high;
 
-        while (low <= high) {
-            int m = (high + low) / 2;
+        while (low < high) {
+            int m = (low + high) / 2;
 
-            if (xPos == mValues.get(m).getX()) {
-                while (m > 0 && mValues.get(m - 1).getX() == xPos)
-                    m--;
+            final float d1 = mValues.get(m).getX() - xValue,
+                    d2 = mValues.get(m + 1).getX() - xValue,
+                    ad1 = Math.abs(d1), ad2 = Math.abs(d2);
 
-                return m;
+            if (ad2 < ad1) {
+                // [m + 1] is closer to xValue
+                // Search in an higher place
+                low = m + 1;
+            } else if (ad1 < ad2) {
+                // [m] is closer to xValue
+                // Search in a lower place
+                high = m;
+            } else {
+                // We have multiple sequential x-value with same distance
+
+                if (d1 >= 0.0) {
+                    // Search in a lower place
+                    high = m;
+                } else if (d1 < 0.0) {
+                    // Search in an higher place
+                    low = m + 1;
+                }
             }
 
-            if (xPos > mValues.get(m).getX())
-                low = m + 1;
-            else
-                high = m - 1;
-
-            closest = m;
+            closest = high;
         }
 
         if (closest != -1) {
-            float closestXPos = mValues.get(closest).getX();
+            float closestXValue = mValues.get(closest).getX();
             if (rounding == DataSet.Rounding.UP) {
-                if (closestXPos < xPos && closest < mValues.size() - 1) {
+                // If rounding up, and found x-value is lower than specified x, and we can go upper...
+                if (closestXValue < xValue && closest < mValues.size() - 1) {
                     ++closest;
                 }
             } else if (rounding == DataSet.Rounding.DOWN) {
-                if (closestXPos > xPos && closest > 0) {
+                // If rounding down, and found x-value is upper than specified x, and we can go lower...
+                if (closestXValue > xValue && closest > 0) {
                     --closest;
                 }
+            }
+
+            // Search by closest to y-value
+            if (!Float.isNaN(closestToY)) {
+                while (closest > 0 && mValues.get(closest - 1).getX() == closestXValue)
+                    closest -= 1;
+
+                float closestYValue = mValues.get(closest).getY();
+                int closestYIndex = closest;
+
+                while (true) {
+                    closest += 1;
+                    if (closest >= mValues.size())
+                        break;
+
+                    final Entry value = mValues.get(closest);
+
+                    if (value.getX() != closestXValue)
+                        break;
+
+                    if (Math.abs(value.getY() - closestToY) < Math.abs(closestYValue - closestToY)) {
+                        closestYValue = closestToY;
+                        closestYIndex = closest;
+                    }
+                }
+
+                closest = closestYIndex;
             }
         }
 
@@ -296,29 +365,18 @@ public abstract class RealmBaseDataSet<T extends RealmObject, S extends Entry> e
         if (e == null)
             return;
 
-        float val = e.getY();
-
         if (mValues == null) {
             mValues = new ArrayList<S>();
         }
 
-        if (mValues.size() == 0) {
-            mYMax = val;
-            mYMin = val;
-        } else {
-            if (mYMax < val)
-                mYMax = val;
-            if (mYMin > val)
-                mYMin = val;
-        }
+        calcMinMax(e);
 
         if (mValues.size() > 0 && mValues.get(mValues.size() - 1).getX() > e.getX()) {
-            int closestIndex = getEntryIndex(e.getX(), DataSet.Rounding.UP);
+            int closestIndex = getEntryIndex(e.getX(), e.getY(), DataSet.Rounding.UP);
             mValues.add(closestIndex, e);
-            return;
+        } else {
+            mValues.add(e);
         }
-
-        mValues.add(e);
     }
 
     /**

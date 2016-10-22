@@ -60,11 +60,20 @@ public class RealmPieDataSet<T extends RealmObject> extends RealmBaseDataSet<T, 
     public PieEntry buildEntryFromResultObject(T realmObject, float x) {
         DynamicRealmObject dynamicObject = new DynamicRealmObject(realmObject);
 
-        if(mLabelField == null) {
+        if (mLabelField == null) {
             return new PieEntry(dynamicObject.getFloat(mYValuesField));
         } else {
             return new PieEntry(dynamicObject.getFloat(mYValuesField), dynamicObject.getString(mLabelField));
         }
+    }
+
+    @Override
+    protected void calcMinMax(PieEntry e) {
+
+        if (e == null)
+            return;
+
+        calcMinMaxY(e);
     }
 
     /**
@@ -104,96 +113,92 @@ public class RealmPieDataSet<T extends RealmObject> extends RealmBaseDataSet<T, 
     }
 
     @Override
-    public PieDataSet.ValuePosition getXValuePosition()
-    {
+    public PieDataSet.ValuePosition getXValuePosition() {
         return mXValuePosition;
     }
 
-    public void setXValuePosition(PieDataSet.ValuePosition xValuePosition)
-    {
+    public void setXValuePosition(PieDataSet.ValuePosition xValuePosition) {
         this.mXValuePosition = xValuePosition;
     }
 
     @Override
-    public PieDataSet.ValuePosition getYValuePosition()
-    {
+    public PieDataSet.ValuePosition getYValuePosition() {
         return mYValuePosition;
     }
 
-    public void setYValuePosition(PieDataSet.ValuePosition yValuePosition)
-    {
+    public void setYValuePosition(PieDataSet.ValuePosition yValuePosition) {
         this.mYValuePosition = yValuePosition;
     }
 
-    /** When valuePosition is OutsideSlice, indicates line color */
+    /**
+     * When valuePosition is OutsideSlice, indicates line color
+     */
     @Override
-    public int getValueLineColor()
-    {
+    public int getValueLineColor() {
         return mValueLineColor;
     }
 
-    public void setValueLineColor(int valueLineColor)
-    {
+    public void setValueLineColor(int valueLineColor) {
         this.mValueLineColor = valueLineColor;
     }
 
-    /** When valuePosition is OutsideSlice, indicates line width */
+    /**
+     * When valuePosition is OutsideSlice, indicates line width
+     */
     @Override
-    public float getValueLineWidth()
-    {
+    public float getValueLineWidth() {
         return mValueLineWidth;
     }
 
-    public void setValueLineWidth(float valueLineWidth)
-    {
+    public void setValueLineWidth(float valueLineWidth) {
         this.mValueLineWidth = valueLineWidth;
     }
 
-    /** When valuePosition is OutsideSlice, indicates offset as percentage out of the slice size */
+    /**
+     * When valuePosition is OutsideSlice, indicates offset as percentage out of the slice size
+     */
     @Override
-    public float getValueLinePart1OffsetPercentage()
-    {
+    public float getValueLinePart1OffsetPercentage() {
         return mValueLinePart1OffsetPercentage;
     }
 
-    public void setValueLinePart1OffsetPercentage(float valueLinePart1OffsetPercentage)
-    {
+    public void setValueLinePart1OffsetPercentage(float valueLinePart1OffsetPercentage) {
         this.mValueLinePart1OffsetPercentage = valueLinePart1OffsetPercentage;
     }
 
-    /** When valuePosition is OutsideSlice, indicates length of first half of the line */
+    /**
+     * When valuePosition is OutsideSlice, indicates length of first half of the line
+     */
     @Override
-    public float getValueLinePart1Length()
-    {
+    public float getValueLinePart1Length() {
         return mValueLinePart1Length;
     }
 
-    public void setValueLinePart1Length(float valueLinePart1Length)
-    {
+    public void setValueLinePart1Length(float valueLinePart1Length) {
         this.mValueLinePart1Length = valueLinePart1Length;
     }
 
-    /** When valuePosition is OutsideSlice, indicates length of second half of the line */
+    /**
+     * When valuePosition is OutsideSlice, indicates length of second half of the line
+     */
     @Override
-    public float getValueLinePart2Length()
-    {
+    public float getValueLinePart2Length() {
         return mValueLinePart2Length;
     }
 
-    public void setValueLinePart2Length(float valueLinePart2Length)
-    {
+    public void setValueLinePart2Length(float valueLinePart2Length) {
         this.mValueLinePart2Length = valueLinePart2Length;
     }
 
-    /** When valuePosition is OutsideSlice, this allows variable line length */
+    /**
+     * When valuePosition is OutsideSlice, this allows variable line length
+     */
     @Override
-    public boolean isValueLineVariableLength()
-    {
+    public boolean isValueLineVariableLength() {
         return mValueLineVariableLength;
     }
 
-    public void setValueLineVariableLength(boolean valueLineVariableLength)
-    {
+    public void setValueLineVariableLength(boolean valueLineVariableLength) {
         this.mValueLineVariableLength = valueLineVariableLength;
     }
 }

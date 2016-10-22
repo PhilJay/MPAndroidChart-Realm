@@ -9,7 +9,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.realm.base.RealmLineRadarDataSet;
 import com.github.mikephil.charting.formatter.DefaultFillFormatter;
-import com.github.mikephil.charting.formatter.FillFormatter;
+import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Utils;
@@ -59,7 +59,7 @@ public class RealmLineDataSet<T extends RealmObject> extends RealmLineRadarDataS
     /**
      * formatter for customizing the position of the fill-line
      */
-    private FillFormatter mFillFormatter = new DefaultFillFormatter();
+    private IFillFormatter mFillFormatter = new DefaultFillFormatter();
 
     /**
      * if true, drawing circles is enabled
@@ -372,7 +372,7 @@ public class RealmLineDataSet<T extends RealmObject> extends RealmLineRadarDataS
      *
      * @param formatter
      */
-    public void setFillFormatter(FillFormatter formatter) {
+    public void setFillFormatter(IFillFormatter formatter) {
 
         if (formatter == null)
             mFillFormatter = new DefaultFillFormatter();
@@ -381,7 +381,7 @@ public class RealmLineDataSet<T extends RealmObject> extends RealmLineRadarDataS
     }
 
     @Override
-    public FillFormatter getFillFormatter() {
+    public IFillFormatter getFillFormatter() {
         return mFillFormatter;
     }
 }

@@ -135,30 +135,31 @@ public class RealmCandleDataSet<T extends RealmObject> extends RealmLineScatterC
     }
 
     @Override
-    public void calcMinMax() {
+    protected void calcMinMax(CandleEntry e) {
 
-        if (mValues == null || mValues.isEmpty())
-            return;
+        if (e.getLow() < mYMin)
+            mYMin = e.getLow();
 
-        mYMax = -Float.MAX_VALUE;
-        mYMin = Float.MAX_VALUE;
-        mXMax = -Float.MAX_VALUE;
-        mXMin = Float.MAX_VALUE;
+        if (e.getHigh() > mYMax)
+            mYMax = e.getHigh();
 
-        for (CandleEntry e : mValues) {
+        calcMinMaxX(e);
+    }
 
-            if (e.getLow() < mYMin)
-                mYMin = e.getLow();
+    @Override
+    protected void calcMinMaxY(CandleEntry e) {
 
-            if (e.getHigh() > mYMax)
-                mYMax = e.getHigh();
+        if (e.getHigh() < mYMin)
+            mYMin = e.getHigh();
 
-            if (e.getX() < mXMin)
-                mXMin = e.getX();
+        if (e.getHigh() > mYMax)
+            mYMax = e.getHigh();
 
-            if (e.getX() > mXMax)
-                mXMax = e.getX();
-        }
+        if (e.getLow() < mYMin)
+            mYMin = e.getLow();
+
+        if (e.getLow() > mYMax)
+            mYMax = e.getLow();
     }
 
     /**

@@ -4,10 +4,15 @@ import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.realm.base.RealmLineScatterCandleRadarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
-import com.github.mikephil.charting.renderer.scatter.ShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.ChevronDownShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.ChevronUpShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.CircleShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.CrossShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.IShapeRenderer;
 import com.github.mikephil.charting.renderer.scatter.SquareShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.TriangleShapeRenderer;
+import com.github.mikephil.charting.renderer.scatter.XShapeRenderer;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.ShapeRendererHandler;
 
 import io.realm.RealmObject;
 import io.realm.RealmResults;
@@ -20,7 +25,7 @@ public class RealmScatterDataSet<T extends RealmObject> extends RealmLineScatter
     /**
      * Renderer responsible for rendering this DataSet, default: square
      */
-    protected ShapeRenderer mShapeRenderer = new SquareShapeRenderer();
+    protected IShapeRenderer mShapeRenderer = new SquareShapeRenderer();
 
     /**
      * the size the scattershape will have, in density pixels
@@ -58,7 +63,7 @@ public class RealmScatterDataSet<T extends RealmObject> extends RealmLineScatter
      *
      * @param result       the queried results from the realm database
      * @param xValuesField the name of the field in your data object that represents the x value
-     * @param yValuesField  the name of the field in your data object that represents the y value
+     * @param yValuesField the name of the field in your data object that represents the y value
      */
     public RealmScatterDataSet(RealmResults<T> result, String xValuesField, String yValuesField) {
         super(result, xValuesField, yValuesField);
@@ -83,34 +88,33 @@ public class RealmScatterDataSet<T extends RealmObject> extends RealmLineScatter
     }
 
     /**
-     * Sets the ScatterShape this DataSet should be drawn with. This will search for an available ShapeRenderer and set this
+     * Sets the ScatterShape this DataSet should be drawn with. This will search for an available IShapeRenderer and set this
      * renderer for the DataSet.
      *
      * @param shape
      */
     public void setScatterShape(ScatterChart.ScatterShape shape) {
-
-        ShapeRendererHandler handler = new ShapeRendererHandler();
-        mShapeRenderer = handler.getShapeRenderer(shape);
+        mShapeRenderer = getRendererForShape(shape);
     }
 
     /**
-     * Sets a new ShapeRenderer responsible for drawing this DataSet.
-     * This can also be used to set a custom ShapeRenderer aside from the default ones.
+     * Sets a new IShapeRenderer responsible for drawing this DataSet.
+     * This can also be used to set a custom IShapeRenderer aside from the default ones.
      *
      * @param shapeRenderer
      */
-    public void setShapeRenderer(ShapeRenderer shapeRenderer) {
+    public void setShapeRenderer(IShapeRenderer shapeRenderer) {
         mShapeRenderer = shapeRenderer;
     }
 
     @Override
-    public ShapeRenderer getShapeRenderer() {
+    public IShapeRenderer getShapeRenderer() {
         return mShapeRenderer;
     }
 
     /**
-     * Sets the radius of the hole in the shape
+     * Sets the radius of the hole in the shape (applies to Square, Circle and Triangle)
+     * Set this to <= 0 to remove holes.
      *
      * @param holeRadius
      */
@@ -124,7 +128,7 @@ public class RealmScatterDataSet<T extends RealmObject> extends RealmLineScatter
     }
 
     /**
-     * Sets the color for the hole in the shape
+     * Sets the color for the hole in the shape.
      *
      * @param holeColor
      */
@@ -135,5 +139,27 @@ public class RealmScatterDataSet<T extends RealmObject> extends RealmLineScatter
     @Override
     public int getScatterShapeHoleColor() {
         return mScatterShapeHoleColor;
+    }
+
+    public static IShapeRenderer getRendererForShape(ScatterChart.ScatterShape shape) {
+
+        switch (shape) {
+            case SQUARE:
+                return new SquareShapeRenderer();
+            case CIRCLE:
+                return new CircleShapeRenderer();
+            case TRIANGLE:
+                return new TriangleShapeRenderer();
+            case CROSS:
+                return new CrossShapeRenderer();
+            case X:
+                return new XShapeRenderer();
+            case CHEVRON_UP:
+                return new ChevronUpShapeRenderer();
+            case CHEVRON_DOWN:
+                return new ChevronDownShapeRenderer();
+        }
+
+        return null;
     }
 }

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
-//apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'realm-android'
 
 android {
@@ -32,8 +31,7 @@ dependencies {
     //compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     //compile project(':MPChartLib')
-    //compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
 }
 
 android.libraryVariants.all { variant ->
