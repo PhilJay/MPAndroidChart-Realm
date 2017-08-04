@@ -21,7 +21,7 @@ allprojects {
 ```gradle
 dependencies {
 	compile 'com.github.PhilJay:MPAndroidChart-Realm:v2.0.2@aar'
-	compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
+	compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }
 ```
 
