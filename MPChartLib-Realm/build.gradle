@@ -31,7 +31,7 @@ dependencies {
     //compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     //compile project(':MPChartLib')
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }
 
 android.libraryVariants.all { variant ->
