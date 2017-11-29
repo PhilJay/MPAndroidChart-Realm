@@ -201,4 +201,9 @@ public class RealmPieDataSet<T extends RealmObject> extends RealmBaseDataSet<T, 
     public void setValueLineVariableLength(boolean valueLineVariableLength) {
         this.mValueLineVariableLength = valueLineVariableLength;
     }
+
+    @Override
+    public boolean isAutomaticallyDisableSliceSpacingEnabled() {
+        return false;
+    }
 }
