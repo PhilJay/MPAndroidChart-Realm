@@ -20,8 +20,8 @@ allprojects {
  - Add this to your app `build.gradle`:
 ```gradle
 dependencies {
-	compile 'com.github.PhilJay:MPAndroidChart-Realm:v3.0.3@aar'
-	compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+	implementation 'com.github.PhilJay:MPAndroidChart-Realm:v3.0.3@aar'
+	implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 ```
 
